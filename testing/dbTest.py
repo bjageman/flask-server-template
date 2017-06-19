@@ -1,10 +1,10 @@
-from . import PartyCrawlTesting
+from . import TestingBase
 from collections import Counter
 
 from v1.apps.users.models import User
 
-class PartyCrawlTesting(WWTesting):
-    def user_login(self):
+class DBTests(TestingBase):
+    def test_user_login(self):
         username = "TestUser1"
         correct_password = "password"
         incorrect_password = "Password"

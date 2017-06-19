@@ -37,9 +37,3 @@ class TestingBase(unittest.TestCase):
         self.db.session.remove()
         self.db.session.close()
         self.db.drop_all()
-
-
-class PartyCrawlTesting(TestingBase):
-
-    def doStuff():
-        return True
