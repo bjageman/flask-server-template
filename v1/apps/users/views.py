@@ -25,27 +25,27 @@ def get_users_player(user, game):
 @socketio.on('login')
 def login(data):
     try:
-        username = data['username']
+        name = data['name']
         password = data['password']
     except (AttributeError, KeyError):
         emit_error("Bad Request")
-    user = authenticate(username, password)
+    user = authenticate(name, password)
     if user is not None:
         emit('user_login_success',{
             "user": parse_user(user),
         })
     else:
-        emit_error("Incorrect Username/Password")
+        emit_error("Incorrect name/Password")
 
 @users.route('/login', methods=['POST'])
 def login_user():
     try:
         data = request.get_json()
-        username = data['username']
+        name = data['name']
         password = data['password']
     except (AttributeError, KeyError):
         abort(400)
-    user = authenticate(username, password)
+    user = authenticate(name, password)
     if user is None:
         abort(404)
     return jsonify(parse_user(user))
@@ -60,14 +60,14 @@ def get_user():
 def register_user():
     try:
         data = request.get_json()
-        username = data['username']
+        name = data['name']
         password = data['password']
     except (AttributeError, KeyError):
         abort(400)
-    if User.query.filter_by(username = username).first() is not None:
+    if User.query.filter_by(name = name).first() is not None:
         abort(400)
-    user = User(username = username)
+    user = User(name = name)
     user.hash_password(password)
     db.session.add(user)
     db.session.commit()
-    return jsonify({ 'username': user.username })
+    return jsonify({ 'name': user.name })

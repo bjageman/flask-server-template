@@ -12,7 +12,7 @@ from flask_socketio import SocketIO, SocketIOTestClient
 class TestingBase(unittest.TestCase):
     def initDB(self):
         for i in range(15):
-            user = User(username="TestUser" + str(i))
+            user = User(name="TestUser" + str(i))
             user.hash_password("password")
             if i == 0:
                 user.admin = True

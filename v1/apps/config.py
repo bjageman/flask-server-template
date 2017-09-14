@@ -10,7 +10,7 @@ DB_PORT = (os.environ.get('DB_PORT','3306'))
 DB_TEST = (os.environ.get('DB_TEST','test'))
 DATABASE = DB_TYPE + '://' + DB_USER + ':' + DB_PASS + '@' + DB_HOST + ":" + DB_PORT + '/' + DB_DATABASE
 
-DATABASE_TEST = DB_TYPE + 'mysql://' + DB_USER + ':' + DB_PASS + '@' + DB_HOST + ":" + DB_PORT + '/' + DB_TEST
+DATABASE_TEST = DB_TYPE + '://' + DB_USER + ':' + DB_PASS + '@' + DB_HOST + ":" + DB_PORT + '/' + DB_TEST
 
 DATETIMEFORMAT = "%m/%d/%Y %I:%M %p"
 #08/01/2017 12:00 AM

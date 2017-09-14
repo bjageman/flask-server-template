@@ -1,7 +1,7 @@
 from .models import User
 
-def authenticate(username, password):
-    user = User.query.filter_by(username = username).first()
+def authenticate(name, password):
+    user = User.query.filter_by(name = name).first()
     if user and user.verify_password(password):
         return user
 

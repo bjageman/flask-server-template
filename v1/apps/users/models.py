@@ -5,7 +5,6 @@ from v1.apps.models import *
 class User(Base, TimestampMixin):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key= True)
-    username = db.Column(db.String(32), index = True)
     password_hash = db.Column(db.String(128))
     first_name = db.Column(db.String(32))
     last_name = db.Column(db.String(32))

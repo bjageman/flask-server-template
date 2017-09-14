@@ -10,7 +10,6 @@ def parse_user(user):
     try:
         result = parse_base(user)
         result.update({
-            "username": user.username,
             "first_name": user.first_name,
             "last_name": user.last_name,
             "email": user.email,
