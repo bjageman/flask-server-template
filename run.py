@@ -1,18 +1,7 @@
-from flask_script import Manager, Server
-
-from v1.apps import app, socketio
-
-# manager = Manager(app)
-#
-# manager.add_command("runserver", Server(
-#     use_debugger = True,
-#     use_reloader = True,
-#     host = '0.0.0.0',
-#     port = 5000)
-# )
-
-# if __name__ == "__main__":
-#     manager.run()
+import os
+from v1.apps import app, db, socketio
 
 if __name__ == '__main__':
-    socketio.run(app, debug=True, host='0.0.0.0')
+    db.create_all()
+    port = int(os.environ.get('PORT', 5000))
+    socketio.run(app, debug=True,  host='0.0.0.0')

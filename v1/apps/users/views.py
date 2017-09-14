@@ -9,11 +9,13 @@ from .models import User
 from ..database import *
 
 from v1.apps import socketio, db
-from v1.apps.parsers import parse_user
+from .parsers import parse_user
 
 #Error handling
 from v1.apps.errors import *
 from .errors import *
+
+from v1.apps.auth import verify_auth
 
 def get_users_player(user, game):
     for player in game.players:
@@ -34,6 +36,25 @@ def login(data):
         })
     else:
         emit_error("Incorrect Username/Password")
+
+@users.route('/login', methods=['POST'])
+def login_user():
+    try:
+        data = request.get_json()
+        username = data['username']
+        password = data['password']
+    except (AttributeError, KeyError):
+        abort(400)
+    user = authenticate(username, password)
+    if user is None:
+        abort(404)
+    return jsonify(parse_user(user))
+
+
+@users.route('', methods=['GET'])
+def get_user():
+    user = verify_auth(request)
+    return jsonify(parse_user(user))
 
 @users.route('', methods=['POST'])
 def register_user():

@@ -1,7 +1,8 @@
 from v1.apps import db
 from passlib.apps import custom_app_context as pwd_context
+from v1.apps.models import *
 
-class User(db.Model):
+class User(Base, TimestampMixin):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key= True)
     username = db.Column(db.String(32), index = True)

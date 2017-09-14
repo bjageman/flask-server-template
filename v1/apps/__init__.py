@@ -22,6 +22,9 @@ async_mode = None
 socketio = SocketIO(app, async_mode=async_mode)
 
 from .users import users
+from v1.apps.users.utils import authenticate, identity
+
+jwt = JWT(app, authenticate, identity)
 
 #JWT System
 
