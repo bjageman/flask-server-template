@@ -4,4 +4,4 @@ This is a basic template for running a lightweight flask server. It includes all
 
 ### Instructions
 
-* Copy the config.template.py file to config.py and put in the relevant configuration
+You'll need to have some kind of database installed (mysql, postgresql, etc). After that, be sure to set your environment variables to the correct info in order to create a database.
